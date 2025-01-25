@@ -1,1 +1,0 @@
-#author: Thomas Bausman
