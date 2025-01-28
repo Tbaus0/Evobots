@@ -7,9 +7,10 @@ physicsClient = p.connect(p.GUI)    #Connecting to physics engine
 p.setAdditionalSearchPath(pybullet_data.getDataPath())  #To load URDF files i think
 
 planeId = p.loadURDF("plane.urdf")  #create floor
+robotId = p.loadURDF("body.urdf")
 p.setGravity(0,0,-9.8)  #set gravity to -9.8
 
-p.loadSDF("boxs.sdf")
+p.loadSDF("world.sdf")
 
 for i in range(0,1000):
   p.stepSimulation()
