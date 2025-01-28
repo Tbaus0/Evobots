@@ -16,15 +16,19 @@ p.setGravity(0,0,-9.8)  #set gravity to -9.8
 p.loadSDF("world.sdf")
 pyrosim.Prepare_To_Simulate(robotId)
 
-backLegSensorValues = numpy.zeros(10000)    #Create vector for detection
+backLegSensorValues = numpy.zeros(1000)    #Create vector for detection
+frontLegSensorValues = numpy.zeros(1000)
 
 for i in range(0,1000):
   p.stepSimulation()
-  backLegSensorValues[i] = pyrosim.Get_Touch_Sensor_Value_For_Link("FrontLeg") #Checks for touch on BackLeg
+  backLegSensorValues[i] = pyrosim.Get_Touch_Sensor_Value_For_Link("BackLeg") #Checks for touch on BackLeg
+  frontLegSensorValues[i] = pyrosim.Get_Touch_Sensor_Value_For_Link("FrontLeg")
   time.sleep(1/60)
 
 file_path = os.path.join("data", "backLegSensorValues.npy")
 numpy.save(file_path, backLegSensorValues)
-print(backLegSensorValues)
+
+file_path = os.path.join("data", "frontLegSensorValues.npy")
+numpy.save(file_path, frontLegSensorValues)
 
 p.disconnect()
