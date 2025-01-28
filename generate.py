@@ -2,19 +2,22 @@ import pyrosim.pyrosim as pyrosim
 
 pyrosim.Start_SDF("boxs.sdf")
 
-#Cube Position
-x = 0
+#Cube initial Position
+x_i = -2.5
 y = 0.5
-z = 0
+z = -3
 
-#Setting block size
+#Setting initial block size
 length = 1
 width = 1
 height = 1
-
-#Generating cube1
-pyrosim.Send_Cube(name="Box", pos=[x,z,y] , size=[length,width,height])
-#Generate cube 2
-pyrosim.Send_Cube(name="Box2", pos=[1,0,1.5] , size=[1,1,1])
-
+for j in range(0,5):
+    z += 1
+    for i in range(0,5):
+        x = x_i + (1*i)
+        #Generating cube tower
+        for p in range(0,10): 
+            jump = pow(0.9,p)
+            pyrosim.Send_Cube(name="Box", pos=[x,z,y+p] , size=[length * jump ,width * jump ,height * jump])
+    x = x_i
 pyrosim.End()
