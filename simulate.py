@@ -5,6 +5,7 @@ import pyrosim.pyrosim as pyrosim
 import time
 import numpy as np
 import os
+import constants as c
 #import random
 
 physicsClient = p.connect(p.GUI)    #Connecting to physics engine
@@ -21,20 +22,12 @@ backLegSensorValues = np.zeros(1000)    #Create vector for detection
 frontLegSensorValues = np.zeros(1000)
 
 #Back Leg movement
-backLeg_amplitude = 0
-backLeg_frequency = 10
-backLeg_phaseOffset = 0
-
 backLeg_x = np.linspace(0, 2 * np.pi, 1000)
-backLeg_targetAngles = backLeg_amplitude * np.sin(backLeg_frequency * backLeg_x + backLeg_phaseOffset)
+backLeg_targetAngles = c.backLeg_amplitude * np.sin(c.backLeg_frequency * backLeg_x + c.backLeg_phaseOffset)
 
 #Front Leg movement
-frontLeg_amplitude = -(np.pi/4)
-frontLeg_frequency = 6
-frontLeg_phaseOffset = np.pi
-
 frontLeg_x = np.linspace(0, 2 * np.pi, 1000)
-frontLeg_targetAngles = frontLeg_amplitude * np.sin(frontLeg_frequency * frontLeg_x + frontLeg_phaseOffset)
+frontLeg_targetAngles = c.frontLeg_amplitude * np.sin(c.frontLeg_frequency * frontLeg_x + c.frontLeg_phaseOffset)
 
 file_path = os.path.join("data", "backLeg_targetAngles.npy")
 np.save(file_path, backLeg_targetAngles)
