@@ -2,9 +2,7 @@ import pyrosim.pyrosim as pyrosim
 
 
 
-def Create_World():
-    
-    
+def Generate_Body():
     pyrosim.Start_SDF("world.sdf")  #start new SDF file
     
     #Cube initial Position
@@ -21,8 +19,7 @@ def Create_World():
     
     pyrosim.End()
 
-def Create_Robot():
-    
+
     #Robot initial Position
     x = 0.5
     y = 0
@@ -43,6 +40,17 @@ def Create_Robot():
 
     pyrosim.End()
     
+def Generate_Brain():
+    
+    pyrosim.Start_NeuralNetwork("brain.nndf")  #start new nndf file for neuron
+    
+    pyrosim.Send_Sensor_Neuron(name = 0 , linkName = "Torso")
 
-Create_World()
-Create_Robot()
+
+
+    
+    pyrosim.End()
+    
+
+Generate_Body()
+Generate_Brain()
