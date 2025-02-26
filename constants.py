@@ -6,6 +6,8 @@ Created on Mon Feb  3 22:56:38 2025
 """
 import numpy as np
 
+gravity = -9.8  #gravity in m/s
+
 backLeg_amplitude = np.pi/4
 backLeg_frequency = 8
 backLeg_phaseOffset = 0
