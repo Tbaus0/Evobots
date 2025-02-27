@@ -7,7 +7,7 @@ Created on Tue Feb 18 00:49:00 2025
 import pyrosim.pyrosim as pyrosim
 import numpy as np
 import pybullet as p
-import os
+
 
 class MOTOR:
     def __init__(self, jointName: str):
@@ -26,7 +26,7 @@ class MOTOR:
         self.motorValues = self.amplitude * np.sin(self.frequency * x + self.offset)
         
 
-    def Get_Value(self,step: int, robot):
+    def Get_Value(self, desiredAngle, robot):
         
         pyrosim.Set_Motor_For_Joint(  #Back Leg
 
@@ -36,7 +36,7 @@ class MOTOR:
 
         controlMode = p.POSITION_CONTROL,  #determines how the motor will attempt to control the motion of the joint
 
-        targetPosition = self.motorValues[step],   #angle in radians we want the arm to have
+        targetPosition = desiredAngle,   #angle in radians we want the arm to have
 
         maxForce = 250)
         

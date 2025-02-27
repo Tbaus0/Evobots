@@ -19,8 +19,8 @@ class SENSOR:
         
         self.values[step] = pyrosim.Get_Touch_Sensor_Value_For_Link(self.linkName)
         
-        if step+1 == len(self.values):
-            print(self.values)
+        # if step+1 == len(self.values):
+        #     print(self.values)
             
     def Save_Values(self):
 

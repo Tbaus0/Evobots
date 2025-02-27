@@ -8,9 +8,7 @@ Created on Tue Feb 18 00:37:12 2025
 from world import WORLD
 from robot import ROBOT
 import pybullet as p
-import pybullet_data
 import time
-import os
 import constants as c
 
 
@@ -30,6 +28,7 @@ class SIMULATION:
         for i in range(0,1000):
             p.stepSimulation()
             self.robot.Sense(i)
+            self.robot.Think()
             self.robot.Act(i)
           
             time.sleep(1/100)

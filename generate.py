@@ -42,13 +42,17 @@ def Generate_Body():
     
 def Generate_Brain():
     
-    pyrosim.Start_NeuralNetwork("brain.nndf")  #start new nndf file for neuron
+    pyrosim.Start_NeuralNetwork("brain.nndf")  #start new nndf, for a neural network description format file, specific to pyrosim
     
+    #Create a sensor neuron
     pyrosim.Send_Sensor_Neuron(name = 0 , linkName = "Torso")
-
-
-
+    pyrosim.Send_Sensor_Neuron(name = 1 , linkName = "BackLeg")
+    pyrosim.Send_Sensor_Neuron(name = 2 , linkName = "FrontLeg")
     
+    #Create a motor neuron
+    pyrosim.Send_Motor_Neuron( name = 3 , jointName = "BackLeg_Torso")
+    pyrosim.Send_Motor_Neuron( name = 4 , jointName = "Torso_FrontLeg")
+        
     pyrosim.End()
     
 
