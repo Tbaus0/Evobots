@@ -52,7 +52,10 @@ def Generate_Brain():
     #Create a motor neuron
     pyrosim.Send_Motor_Neuron( name = 3 , jointName = "BackLeg_Torso")
     pyrosim.Send_Motor_Neuron( name = 4 , jointName = "Torso_FrontLeg")
-        
+    
+    pyrosim.Send_Synapse( sourceNeuronName = 1 , targetNeuronName = 4 , weight = 0.7 )  #Generate a synapse
+    pyrosim.Send_Synapse( sourceNeuronName = 2 , targetNeuronName = 3 , weight = -1 )
+    
     pyrosim.End()
     
 

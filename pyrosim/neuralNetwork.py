@@ -6,16 +6,16 @@ class NEURAL_NETWORK:
 
     def __init__(self,nndfFileName):
 
-        self.neurons = {}
+        self.neurons = {}   
 
-        self.synapses = {}
+        self.synapses = {}  #Key is a tuple with two entries: presynaptic and postsynaptic neurons, respectively
 
         f = open(nndfFileName,"r")
 
         for line in f.readlines():
 
             self.Digest(line)
-
+        
         f.close()
 
     def Print(self):
@@ -35,8 +35,8 @@ class NEURAL_NETWORK:
                 self.neurons[neuronName].Update_Sensor_Neuron()
                 
             else:
-                self.neurons[neuronName].Update_Hidden_Or_Motor_Neuron()
-                
+                self.neurons[neuronName].Update_Hidden_Or_Motor_Neuron(self.neurons, self.synapses)
+        
     def Get_Neuron_Names(self):
         
         neuronNames = self.neurons.keys()

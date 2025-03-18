@@ -9,7 +9,7 @@ from motor import MOTOR
 import pybullet as p
 import pyrosim.pyrosim as pyrosim
 from pyrosim.neuralNetwork import NEURAL_NETWORK
-import numpy as np
+
 
 class ROBOT:
     
@@ -55,14 +55,16 @@ class ROBOT:
             
             if self.nn.Is_Motor_Neuron(neuronName): #If motor neuron or not
                 
-                jointName = self.nn.Get_Motor_Neurons_Joint(neuronName) # extract the name of the joint to which this motor neuron connects
+                jointName = self.nn.Get_Motor_Neurons_Joint(neuronName).encode("utf-8") # extract the name of the joint to which this motor neuron connects
                 desiredAngle = self.nn.Get_Value_Of(neuronName)
                  
                 
-                for joint in pyrosim.jointNamesToIndices: #listing off the links
-                    self.motors[joint].Get_Value(desiredAngle, robot)
-                
-                print(f'neuron name:{neuronName} joint name:{jointName} value:{desiredAngle}')
+                #for joint in pyrosim.jointNamesToIndices: #listing off the links
+                self.motors[jointName].Get_Value(desiredAngle, robot)
+                    
+                    # print(f'test joint name: {joint}')
+                    # print(f'desired angle:{desiredAngle}')
+                print(f'neuron name:{neuronName} joint name:{jointName} desired angle:{desiredAngle}')
                 
     def Save(self):
         

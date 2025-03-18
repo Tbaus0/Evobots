@@ -38,7 +38,7 @@ class MOTOR:
 
         targetPosition = desiredAngle,   #angle in radians we want the arm to have
 
-        maxForce = 250)
+        maxForce = 100)
         
     def Save_Values(self):
         np.save(f'data/Motor_Data_{self.jointName}.npy', self.motorValues)
